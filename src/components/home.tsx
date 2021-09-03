@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {FC} from 'react';
 import './home.sass';
 
-const Home = () => {
+const Home: FC= () => {
   return (
     <div className="section home">
       <h1>No coding, No thinking</h1>

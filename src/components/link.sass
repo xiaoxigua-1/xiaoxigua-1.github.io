@@ -1,0 +1,46 @@
+#link
+  display: flex
+  position: relative
+  height: 24px
+  padding: 11px 20px
+  border-radius: 5px
+  color: #ffff
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+  box-shadow: rgb(0 0 0 / 20%) 0px 8px 10px
+  transition: all .5s
+  text-decoration: none
+  &:link, &:visited, &:active, &:hover
+    color: #ffff
+  &:hover
+    box-shadow: rgb(0 0 0 / 30%) 0px 15px 25px
+  span
+    margin-left: 8px
+
+.copy
+  
+  &::after
+    content: "Copy to clipboard"
+    position: absolute
+    display: flex
+    transform: perspective(10px)
+    background-color: rgb(21, 23, 24)
+    color: #ffff
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    justify-content: center
+    align-items: center
+    border-radius: 10px
+    z-index: -9999
+    transition:  all .3s
+  &:hover:after
+    z-index: 10
+    top: -3rem
+    
+
+    
+    

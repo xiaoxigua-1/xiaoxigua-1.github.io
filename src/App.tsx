@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import ReactFullpage from '@fullpage/react-fullpage';
 import Home from './components/home';
 import Navbar from './components/navbar';
@@ -7,7 +7,7 @@ import './App.css';
 
 const anchors = ['Home', 'About-me', 'thirdPage'];
 const navigation = ['Home', 'About me', 'thirdPage'];
-const App = () => {
+const App: FC = () => {
   return (
     <div>
       <Navbar />

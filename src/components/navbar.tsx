@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {FC} from 'react';
 import './navbar.sass';
 
-const Navbar = () => {
+const Navbar: FC = () => {
   return (
     <li id="menu">
       <ul>
@@ -11,9 +11,6 @@ const Navbar = () => {
           </div>
           <div>xiao xigua</div>
         </a>
-      </ul>
-      <ul>
-        <a href="#About-me">About me</a>
       </ul>
     </li>
   );
