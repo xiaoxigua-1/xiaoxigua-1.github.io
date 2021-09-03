@@ -9,8 +9,11 @@ const Navbar = () => {
           <div id="avatar">
             <img src="https://cdn.discordapp.com/avatars/458988300418416640/05549a0ef3b6c2d804214f8c8e2c40bd.webp?size=4096" />
           </div>
-          <p>xiao xigua</p>
+          <div>xiao xigua</div>
         </a>
+      </ul>
+      <ul>
+        <a href="#About-me">About me</a>
       </ul>
     </li>
   );

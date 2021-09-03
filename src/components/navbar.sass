@@ -8,7 +8,14 @@
   top: 50px
   ul
     margin: 0
-
+    a
+      text-decoration: none
+      font-size: 1rem
+      transition: all .3s
+      &:link, &:visited, &:active
+        color: #afafaf
+      &:hover
+        color: #ffff  
 #avatar
   width: 64px
   height: 64px
@@ -21,9 +28,8 @@
 #title
   display: flex
   align-items: center
-  text-decoration: none
-  &:link, &:hover, &:visited, &:active
-    color: #ffff
-  p
+
+  div
     margin: 0 17px
     font-size: 2rem
+    color: #dbdada
