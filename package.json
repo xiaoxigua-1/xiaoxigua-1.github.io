@@ -9,8 +9,10 @@
   "dependencies": {
     "@fullpage/react-fullpage": "^0.1.19",
     "@types/react-router": "^5.1.16",
+    "axios": "^0.21.2",
     "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react-dom": "^17.0.0",
+    "react-slideshow-image": "^3.5.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",

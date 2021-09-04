@@ -3,10 +3,12 @@ import ReactFullpage from '@fullpage/react-fullpage';
 import Home from './components/home';
 import Navbar from './components/navbar';
 import About from './components/AboutMe';
+import Projects from './components/projects';
 import './App.css';
 
-const anchors = ['Home', 'About-me', 'thirdPage'];
-const navigation = ['Home', 'About me', 'thirdPage'];
+const anchors = ['Home', 'About-me', 'My-Prjoect'];
+const navigation = ['Home', 'About Me', 'My Prjoect'];
+
 const App: FC = () => {
   return (
     <div>
@@ -17,12 +19,14 @@ const App: FC = () => {
         anchors={anchors}
         navigation
         navigationTooltips={navigation}
-        sectionsColor={['#282c34', '#191d27', '#0798ec']}
+        sectionsColor={['#282c34', '#191d27', '#060f14']}
+        responsive={true}
         render={({state, fullpageApi}) => {
           return (
             <div>
               <Home />
               <About />
+              <Projects />
             </div>
           );
         }}

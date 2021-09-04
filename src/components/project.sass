@@ -1,0 +1,44 @@
+@import 'react-slideshow-image/dist/styles.css'
+@import url('https://use.fontawesome.com/releases/v5.7.1/css/all.css')
+$controlArrow: 50px
+
+.fp-controlArrow.fp-prev
+  left: $controlArrow
+.fp-controlArrow.fp-next
+  right: $controlArrow
+
+
+.projects
+  padding: 0 50px
+
+.project
+  height: 500px
+  display: flex
+  align-items: center
+  justify-content: center
+  .box
+    border-radius: 10px
+    width: 500px
+    background-color: #202324
+    padding: 20px
+    transition: all .4s
+    text-decoration: none
+    -webkit-user-select: none
+    -moz-user-select: none
+    -o-user-select: none
+    user-select: none
+    &:hover
+      transform: scale(1.03)
+    &:link, &:hover, &:visited, &:active
+      color: #ffff
+    h1
+      margin-top: 0
+    
+    
+.count
+  display: flex
+  span
+    margin-left: 10px
+  & > div
+    margin-right: 20px
+    
