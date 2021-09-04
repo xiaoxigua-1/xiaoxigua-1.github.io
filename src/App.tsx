@@ -20,7 +20,7 @@ const App: FC = () => {
         navigation
         navigationTooltips={navigation}
         sectionsColor={['#282c34', '#191d27', '#060f14']}
-        responsive={true}
+        infinite={true}
         render={({state, fullpageApi}) => {
           return (
             <div>
