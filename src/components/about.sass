@@ -30,7 +30,9 @@
   display: flex         /* NEW, Spec - Firefox, Chrome, Opera */
   width: 80%
   flex-wrap: wrap
+  -webkit-flex-wrap: nowrap /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   justify-content: center
+  -webkit-justify-content: center /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   margin: 0 auto
   flex: 1 0 auto
   & > *
