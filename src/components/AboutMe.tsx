@@ -3,6 +3,7 @@ import Link from './link';
 import Discord from './discord.svg';
 import Twitter from './twitter.svg';
 import GitHub from './github.svg';
+import RSS from './rss.svg';
 import './about.sass';
 
 const About: FC = () => {
@@ -32,6 +33,13 @@ const About: FC = () => {
             color="#000000ff"
             click={true}
             href="https://github.com/xiaoxigua-1"
+          />
+          <Link
+            src={RSS}
+            title="xiao xigua blog"
+            color="#004daa"
+            click={true}
+            href="https://xiaoxigua-1.github.io/blog/"
           />
         </div>
       </div>
