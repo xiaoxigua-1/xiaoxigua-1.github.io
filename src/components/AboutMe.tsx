@@ -36,7 +36,7 @@ const About: FC = () => {
           />
           <Link
             src={RSS}
-            title="xiao xigua blog"
+            title="Blog"
             color="#004daa"
             click={true}
             href="https://xiaoxigua-1.github.io/blog/"
