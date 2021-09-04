@@ -1,5 +1,8 @@
 #link
-  display: flex
+  display: -webkit-box   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox  /* TWEENER - IE 10 */
+  display: -webkit-flex /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex         /* NEW, Spec - Firefox, Chrome, Opera */
   position: relative
   height: 24px
   padding: 11px 20px
@@ -12,6 +15,8 @@
   box-shadow: rgb(0 0 0 / 20%) 0px 8px 10px
   transition: all .5s
   text-decoration: none
+  & > *
+    flex: auto
   &:link, &:visited, &:active, &:hover
     color: #ffff
   &:hover
