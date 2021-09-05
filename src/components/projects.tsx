@@ -1,4 +1,5 @@
 import React, {FC, useState, useEffect} from 'react';
+import Proportion from './proportion';
 import {Slide} from 'react-slideshow-image';
 import axios from 'axios';
 import './project.sass';
@@ -36,8 +37,9 @@ const Projects: FC = () => {
               <a className="box" href={project['html_url']}>
                 <h1>{project.name}</h1>
                 <p>
-                  {project.description ?
-                    project.description : 'No description'
+                  {
+                    project.description ?
+                      project.description : 'No description'
                   }
                 </p>
                 <div className="count">
@@ -54,6 +56,7 @@ const Projects: FC = () => {
                     <span>{project['forks_count']}</span>
                   </div>
                 </div>
+                <Proportion url={project['full_name']}/>
               </a>
             </div>
           );
