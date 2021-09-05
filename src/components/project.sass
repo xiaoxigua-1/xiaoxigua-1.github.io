@@ -32,10 +32,6 @@ $controlArrow: 50px
     user-select: none
     &:hover
       transform: scale(1.05)
-      // transform: translateY(-10px)
-      .proportion
-        // top: -60%
-        opacity: 1
 
     &:link, &:hover, &:visited, &:active
       color: #ffff
@@ -52,32 +48,9 @@ $controlArrow: 50px
     
 .proportion
   transition: all .2s
-  position: absolute
-  width: 500px
-  background-color: #202324
-  height: 50%
-  top: -60%
-  z-index: -1
-  border-radius: 10px
-  opacity: 0
-
-  &::after
-    content: ""
-    bottom: -30px
-    border-width: 15px 15px 15px 15px
-    border-style: solid solid solid
-    border-color: #202324 transparent transparent
-    position: absolute
-    left: 50%
-    transform: translateX(-50%)
-  
-  & > div
-    position: absolute
-    width: 80%
-    height: 10px
-    overflow: hidden
-    background-color: #ffff
-    border-radius: 20px
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
+  width: 100%
+  margin-top: 20px
+  overflow: hidden
+  height: 10px
+  display: inline-flex
+  border-radius: 20px
