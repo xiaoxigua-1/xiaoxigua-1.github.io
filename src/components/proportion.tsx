@@ -15,7 +15,6 @@ const Proportion: FC<{url: string}> = ({url}) => {
             }
           }
           setLan(lanList);
-          console.log(url, lanList, codeNumber);
         });
   }, []);
 
@@ -24,7 +23,6 @@ const Proportion: FC<{url: string}> = ({url}) => {
     else if (lan === 'C++') return 'Cpp';
     else return lan;
   };
-
   return (
     <div className="proportion">
       {lan.map((lanData) => {
@@ -35,7 +33,7 @@ const Proportion: FC<{url: string}> = ({url}) => {
             }
             key={lanData[0]}
             style={{
-              width: `${(codeNumber / lanData[1]) * 100}%`,
+              width: `${(lanData[1] / codeNumber) * 100}%`,
               height: '120%',
             }}
           >
