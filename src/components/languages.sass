@@ -1,26 +1,58 @@
+@mixin hover-text($lan)
+  &:hover::after
+    content: ""
+    border-color: transparent transparent #888888
+    border-style: solid solid solid
+    border-width: 10px 10px 10px 10px
+    bottom: 10px
+    position: absolute
+    transform: translateX(-50%)
+    left: 50%
+  &:hover::before
+    content: $lan
+    position: absolute
+    padding: 10px
+    background-color: #888888
+    left: 50%
+    transform: translateX(-50%)
+    bottom: -30px
+    border-radius: 10px
+    
+
+
+  
 .Vue
   background-color: #41B883
+  @include hover-text('Vue')
 
 .HTML
   background-color: #E34C26
+  @include hover-text('HTML')
 
 .Kotlin
   background-color: #A97BFF
+  @include hover-text('Kotlin')
 
 .Python
   background-color: #3572A5
+  @include hover-text('Python')
 
 .TypeScript
   background-color: #2B7489
+  @include hover-text('TypeScript')
 
 .JavaScript
   background-color: #F1E05A
+  @include hover-text('JavaScript')
 
 .SCSS, .Sass
   background-color: #A53B70
+  @include hover-text('Sass/SCSS')
 
 .CS
   background-color: #178600
+  @include hover-text('C#')
 
 .CSS
   background-color: #563D7C
+  @include hover-text('CSS')
