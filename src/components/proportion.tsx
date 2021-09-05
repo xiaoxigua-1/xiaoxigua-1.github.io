@@ -18,13 +18,20 @@ const Proportion: FC<{url: string}> = ({url}) => {
           console.log(url, lanList, codeNumber);
         });
   }, []);
+
+  const lanClass = (lan: string): string => {
+    if (lan === 'C#') return 'CS';
+    else if (lan === 'C++') return 'Cpp';
+    else return lan;
+  };
+
   return (
     <div className="proportion">
       {lan.map((lanData) => {
         return (
           <div
             className={
-              (lanData[0] === 'C#') ? 'CS' : lanData[0] + ' languages'
+              lanClass(lanData[0]) + ' languages'
             }
             key={lanData[0]}
             style={{
