@@ -35,7 +35,6 @@ const Proportion: FC<{url: string}> = ({url}) => {
             key={lanData[0]}
             style={{
               width: `${(lanData[1] / codeNumber) * 100}%`,
-              height: '100%',
               borderTopLeftRadius: index ? '' : '20px',
               borderBottomLeftRadius: index ? '' : '20px',
               borderTopRightRadius: (index === lan.length - 1) ? '20px' : '',
