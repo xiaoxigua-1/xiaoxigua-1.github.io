@@ -2,19 +2,23 @@
   width: 0
   height: 0
   opacity: 0
-
+  display: flex
+  pointer-events: none
+.star
+  position: relative
 .stargazer
   // height: 48px
   // width: 100%
-
 .star
-  position: relative
+  &:hover
+    .stargazers-max
+      width: 272px !important
+      flex-wrap: wrap
+.star
   &:hover
     .stargazers
       padding: 10px
-      display: flex
-      max-width: 400px
-      // flex-wrap: wrap
+      pointer-events: auto
       width: auto
       height: auto
       display: inline-flex !important
@@ -41,7 +45,7 @@
   height: 48px
   border-radius: 50%
   overflow: hidden
-  margin: 0 10px
+  margin: 5px 10px
   display: block
   img
     height: 100%

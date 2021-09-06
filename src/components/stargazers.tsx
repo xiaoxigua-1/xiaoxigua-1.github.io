@@ -20,11 +20,16 @@ const Star: FC<{src: string}> = ({src}) => {
   }, []);
 
   return (
-    <div className={stargazers.length ? 'stargazers' : 'no-stargazers'}>
+    <div
+      className={
+        (stargazers.length ? 'stargazers' : 'no-stargazers') +
+            ((stargazers.length > 4) ? ' stargazers-max' : '')
+      }
+    >
       {stargazers.map((stargazer) =>{
         return (
           <div key={stargazer.id} className="stargazer">
-            <div className="avatar">
+            <div className="avatar" title={stargazer.login}>
               <img src={stargazer['avatar_url']} />
             </div>
           </div>
