@@ -1,10 +1,11 @@
 @mixin hover-text($lan)
+  position: relative
   &:hover::after
     content: ""
     border-color: transparent transparent #888888
     border-style: solid solid solid
     border-width: 10px 10px 10px 10px
-    bottom: 5px
+    bottom: -15px
     position: absolute
     transform: translateX(-50%)
     left: 50%
@@ -15,7 +16,7 @@
     background-color: #888888
     left: 50%
     transform: translateX(-50%)
-    bottom: -30px
+    bottom: -50px
     border-radius: 10px
     
 

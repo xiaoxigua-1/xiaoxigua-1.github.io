@@ -2,7 +2,7 @@ import React, {useState, useEffect, FC} from 'react';
 import axios from 'axios';
 
 const Proportion: FC<{url: string}> = ({url}) => {
-  const [lan, setLan] = useState<any>([]);
+  const [lan, setLan] = useState<Array<any>>([]);
   const [codeNumber, setCodeNumber] = useState(0);
   useEffect(() => {
     axios.get(
@@ -20,23 +20,26 @@ const Proportion: FC<{url: string}> = ({url}) => {
     });
   }, []);
 
-  const lanClass = (lan: string): string => {
-    if (lan === 'C#') return 'CS';
-    else if (lan === 'C++') return 'Cpp';
-    else return lan;
+  const lanClass = (lan: string, index: number): string => {
+    const lanData = {'C#': 'CS', 'C++': 'Cpp'};
+    return (lanData[lan] || lan);
   };
   return (
     <div className="proportion">
-      {lan.map((lanData) => {
+      {lan.map((lanData, index) => {
         return (
           <div
             className={
-              lanClass(lanData[0]) + ' languages'
+              lanClass(lanData[0], index) + ' languages'
             }
             key={lanData[0]}
             style={{
               width: `${(lanData[1] / codeNumber) * 100}%`,
-              height: '120%',
+              height: '100%',
+              borderTopLeftRadius: index ? '' : '20px',
+              borderBottomLeftRadius: index ? '' : '20px',
+              borderTopRightRadius: (index === lan.length - 1) ? '20px' : '',
+              borderBottomRightRadius: (index === lan.length - 1) ? '20px' : '',
             }}
           >
           </div>
