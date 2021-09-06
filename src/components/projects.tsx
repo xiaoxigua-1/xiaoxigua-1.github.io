@@ -1,5 +1,6 @@
 import React, {FC, useState, useEffect} from 'react';
 import Proportion from './proportion';
+import Stargazers from './stargazers';
 import {Slide} from 'react-slideshow-image';
 import axios from 'axios';
 import './project.sass';
@@ -47,9 +48,10 @@ const Projects: FC = () => {
                     <li className="fas fa-code"></li>
                     <span>{project.language ? project.language : 'None'}</span>
                   </div>
-                  <div>
+                  <div className="star">
                     <li className="fas fa-star"></li>
                     <span>{project['stargazers_count']}</span>
+                    <Stargazers src={project['full_name']}/>
                   </div>
                   <div>
                     <li className="fas fa-code-branch"></li>
