@@ -11,18 +11,22 @@ const Star: FC<{src: string}> = ({src}) => {
   const [stargazers, setStargazers] = useState<Array<Stargazer>>([]);
 
   useEffect(() => {
-    axios.get(`https://api.github.com/repos/${src}/stargazers`)
-        .then((data) => {
-          setStargazers(data.data);
-        });
+    axios.get(
+        `https://api.github.com/repos/${src}/stargazers`,
+        {headers: {Authorization: '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'}},
+    ).then((data) => {
+      setStargazers(data.data);
+    });
   }, []);
 
   return (
-    <div className="stargazers">
+    <div className={stargazers.length ? 'stargazers' : 'no-stargazers'}>
       {stargazers.map((stargazer) =>{
         return (
           <div key={stargazer.id} className="stargazer">
-
+            <div className="avatar">
+              <img src={stargazer['avatar_url']} />
+            </div>
           </div>
         );
       })}

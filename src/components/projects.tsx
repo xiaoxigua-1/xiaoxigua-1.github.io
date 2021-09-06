@@ -17,11 +17,13 @@ const Projects: FC = () => {
   const [projects, setProjects] = useState<Array<Project>>([]);
   // if (fullPageAPI) fullPageAPI.reBuild();
   useEffect(() => {
-    axios.get('https://api.github.com/users/xiaoxigua-1/repos')
-        .then((data) => {
-          // console.log(fullPageAPI); fullPageAPI.reBuild();
-          setProjects(data.data);
-        });
+    axios.get(
+        'https://api.github.com/users/xiaoxigua-1/repos',
+        {headers: {Authorization: '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'}},
+    ).then((data) => {
+      // console.log(fullPageAPI); fullPageAPI.reBuild();
+      setProjects(data.data);
+    });
   }, []);
   return (
     <div className="section">
