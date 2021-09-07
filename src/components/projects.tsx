@@ -1,6 +1,6 @@
 import React, {FC, useState, useEffect} from 'react';
 import Proportion from './proportion';
-import Stargazers from './stargazers';
+import Star from './star';
 import {Slide} from 'react-slideshow-image';
 import axios from 'axios';
 import './project.sass';
@@ -15,16 +15,17 @@ interface Project {
 
 const Projects: FC = () => {
   const [projects, setProjects] = useState<Array<Project>>([]);
-  // if (fullPageAPI) fullPageAPI.reBuild();
+  const [moveStar, setMoveStar] = useState(false);
+
   useEffect(() => {
-    axios.get(
-        'https://api.github.com/users/xiaoxigua-1/repos',
-        {headers: {Authorization: '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'}},
-    ).then((data) => {
-      // console.log(fullPageAPI); fullPageAPI.reBuild();
-      setProjects(data.data);
-    });
+    axios.get('https://api.github.com/users/xiaoxigua-1/repos')
+        .then((data) => {
+          const projectsData: Array<Project> = data.data;
+          projectsData.splice(10, projectsData.length);
+          setProjects(projectsData);
+        });
   }, []);
+
   return (
     <div className="section">
       <Slide
@@ -50,11 +51,10 @@ const Projects: FC = () => {
                     <li className="fas fa-code"></li>
                     <span>{project.language ? project.language : 'None'}</span>
                   </div>
-                  <div className="star">
-                    <li className="fas fa-star"></li>
-                    <span>{project['stargazers_count']}</span>
-                    <Stargazers src={project['full_name']}/>
-                  </div>
+                  <Star
+                    url={project['full_name']}
+                    stargazersCount={project['stargazers_count']}
+                  />
                   <div>
                     <li className="fas fa-code-branch"></li>
                     <span>{project['forks_count']}</span>
