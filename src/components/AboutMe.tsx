@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import Link from './link';
-import Discord from './discord.svg';
-import Twitter from './twitter.svg';
-import GitHub from './github.svg';
-import RSS from './rss.svg';
+import Discord from './svg/discord.svg';
+import Twitter from './svg/twitter.svg';
+import GitHub from './svg/github.svg';
+import RSS from './svg/rss.svg';
 import './about.sass';
 
 const About: FC = () => {

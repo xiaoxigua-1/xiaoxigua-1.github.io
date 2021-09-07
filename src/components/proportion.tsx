@@ -4,6 +4,7 @@ import axios from 'axios';
 const Proportion: FC<{url: string}> = ({url}) => {
   const [lan, setLan] = useState<Array<any>>([]);
   const [codeNumber, setCodeNumber] = useState(0);
+
   useEffect(() => {
     axios.get(`https://api.github.com/repos/${url}/languages`)
         .then((data) => {
