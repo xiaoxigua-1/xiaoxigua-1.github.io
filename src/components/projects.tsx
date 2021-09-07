@@ -3,7 +3,7 @@ import Proportion from './proportion';
 import Star from './star';
 import {Slide} from 'react-slideshow-image';
 import axios from 'axios';
-import './project.sass';
+import './sass/project.sass';
 
 interface Project {
   id: number,

@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import './navbar.sass';
+import './sass/navbar.sass';
 
 const Navbar: FC = () => {
   return (

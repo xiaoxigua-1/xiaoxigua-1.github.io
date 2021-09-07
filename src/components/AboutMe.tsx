@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
-import Link from './link';
+import Link from './link/link';
 import Discord from './svg/discord.svg';
 import Twitter from './svg/twitter.svg';
 import GitHub from './svg/github.svg';
 import RSS from './svg/rss.svg';
-import './about.sass';
+import './sass/about.sass';
 
 const About: FC = () => {
   return (

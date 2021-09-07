@@ -1,5 +1,5 @@
 import React, {FC, useState} from 'react';
-import Stargazers from './stargazers';
+import Stargazers from './star/stargazers';
 
 const Star: FC<{
   url: string,

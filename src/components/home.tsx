@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import './home.sass';
+import './sass/home.sass';
 
 const Home: FC= () => {
   return (
