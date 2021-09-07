@@ -15,12 +15,14 @@ interface Project {
 
 const Projects: FC = () => {
   const [projects, setProjects] = useState<Array<Project>>([]);
-  const [moveStar, setMoveStar] = useState(false);
 
   useEffect(() => {
     axios.get('https://api.github.com/users/xiaoxigua-1/repos')
         .then((data) => {
           const projectsData: Array<Project> = data.data;
+          projectsData.sort((a, b) => {
+            return b['stargazers_count'] - a['stargazers_count'];
+          });
           projectsData.splice(10, projectsData.length);
           setProjects(projectsData);
         });
