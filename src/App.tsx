@@ -4,7 +4,7 @@ import Home from './components/home';
 import Navbar from './components/navbar';
 import About from './components/AboutMe';
 import Projects from './components/projects';
-import FriendLinks from './components/FriendLinks';
+import FriendLinks from './components/friendLinks';
 import './App.css';
 
 const anchors = ['Home', 'About-me', 'My-Prjoect', 'Friend-Links'];
@@ -20,7 +20,7 @@ const App: FC = () => {
         anchors={anchors}
         navigation
         navigationTooltips={navigation}
-        sectionsColor={['#282c34', '#191d27', '#060f14']}
+        sectionsColor={['#282c34', '#191d27', '#060f14', '#070709']}
         infinite={true}
         render={({state, fullpageApi}) => {
           return (
