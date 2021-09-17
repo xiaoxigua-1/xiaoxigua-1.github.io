@@ -17,7 +17,12 @@ const FriendLinks: FC = () => {
       <div className="friend-links">
         {data.map((friend) => {
           return (
-            <a key={friend.title} href={friend.link} className="link">
+            <a
+              key={friend.title}
+              href={friend.link}
+              className="link"
+              target="_blank" rel="noreferrer"
+            >
               <Tilt
                 glareEnable={true}
                 glareMaxOpacity={1}
@@ -27,7 +32,6 @@ const FriendLinks: FC = () => {
                 <h2>{friend.title}</h2>
               </Tilt>
             </a>
-
           );
         })}
       </div>
