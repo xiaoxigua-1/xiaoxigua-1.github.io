@@ -4,10 +4,11 @@ import Home from './components/home';
 import Navbar from './components/navbar';
 import About from './components/AboutMe';
 import Projects from './components/projects';
+import FriendLinks from './components/FriendLinks';
 import './App.css';
 
-const anchors = ['Home', 'About-me', 'My-Prjoect'];
-const navigation = ['Home', 'About Me', 'My Prjoect'];
+const anchors = ['Home', 'About-me', 'My-Prjoect', 'Friend-Links'];
+const navigation = ['Home', 'About Me', 'My Prjoect', 'Friend Links'];
 
 const App: FC = () => {
   return (
@@ -27,6 +28,7 @@ const App: FC = () => {
               <Home />
               <About />
               <Projects />
+              <FriendLinks />
             </div>
           );
         }}
