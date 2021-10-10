@@ -7,7 +7,7 @@ const Navbar: FC = () => {
       <ul>
         <a id="title" href="#Home">
           <div id="avatar">
-            <img src="https://cdn.discordapp.com/avatars/458988300418416640/05549a0ef3b6c2d804214f8c8e2c40bd.webp?size=4096" />
+            <img src="avatar.webp" />
           </div>
           <div>xiao xigua</div>
         </a>
