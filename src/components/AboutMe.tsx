@@ -13,6 +13,8 @@ const About: FC = () => {
         <h1>About me</h1>
         <p>
           台南高工的某位廢物，不會寫程式成績也爛的可以，不會Python也不會C#每天被Young嘲諷的可憐傢伙。
+          <br />
+          貢獻Deno_std, Vlang等專案
         </p>
         <div id="contact">
           <Link
