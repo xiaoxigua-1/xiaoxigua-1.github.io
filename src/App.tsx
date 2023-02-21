@@ -16,12 +16,12 @@ const App: FC = () => {
       <Navbar />
       <ReactFullpage
         // fullpage options
-        meun="#menu"
+        menu="#menu"
         anchors={anchors}
         navigation
         navigationTooltips={navigation}
         sectionsColor={['#282c34', '#191d27', '#060f14', '#070709']}
-        infinite={true}
+        credits={{}}
         render={({state, fullpageApi}) => {
           return (
             <div>
