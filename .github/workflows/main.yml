@@ -27,15 +27,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm install
     - run: npm run build
-    - name: Commit files
-      run: |
-        cd ./dist
-        git init
-        git config --global user.email aijdfajodwsdf@gmail.com
-        git config --global user.name xiaoxigua-1
-        git status
-        git remote add origin https://${{secrets.GG}}@github.com/xiaoxigua-1/xiaoxigua-1.github.io.git
-        git checkout -b gh-pages-1
-        git add --all
-        git commit -m "update"
-        git push origin gh-pages-1 -f
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
