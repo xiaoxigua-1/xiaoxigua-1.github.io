@@ -12,14 +12,14 @@ const About: FC = () => {
       <div id="about">
         <h1>About me</h1>
         <p>
-          台南高工的某位廢物，不會寫程式成績也爛的可以，不會Python也不會C#每天被Young嘲諷的可憐傢伙。
+          就讀臺南高工主攻Rust, Kotlin, TypeScript等語言，略懂網路、Docker、Compiler、Linux kernel
           <br />
           貢獻Deno_std, Vlang等專案
         </p>
         <div id="contact">
           <Link
             src={Discord}
-            title="xiao xigua#8787"
+            title="xiao xigua#5978"
             color="#004daa"
           />
           <Link
