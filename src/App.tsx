@@ -22,14 +22,15 @@ const App: FC = () => {
         navigationTooltips={navigation}
         sectionsColor={['#282c34', '#191d27', '#060f14', '#070709']}
         credits={{}}
+        licenseKey="gplv3-license"
         render={({state, fullpageApi}) => {
           return (
-            <div>
+            <>
               <Home />
               <About />
               <Projects />
               <FriendLinks />
-            </div>
+            </>
           );
         }}
       />

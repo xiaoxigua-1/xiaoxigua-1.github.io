@@ -4,6 +4,7 @@ import Star from './star';
 import {Slide} from 'react-slideshow-image';
 import axios from 'axios';
 import './sass/project.sass';
+import 'react-slideshow-image/dist/styles.css';
 
 interface Project {
   id: number,
