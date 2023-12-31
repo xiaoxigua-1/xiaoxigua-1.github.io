@@ -1,10 +1,11 @@
-import React, {FC} from 'react';
-import Link from './link/link';
-import Discord from './svg/discord.svg';
-import Twitter from './svg/twitter.svg';
-import GitHub from './svg/github.svg';
-import RSS from './svg/rss.svg';
-import './sass/about.sass';
+import React, { FC } from "react";
+import Link from "./link/link";
+import Discord from "./svg/discord.svg";
+import Twitter from "./svg/twitter.svg";
+import GitHub from "./svg/github.svg";
+import RSS from "./svg/rss.svg";
+import Telegram from "./svg/telegram.svg";
+import "./sass/about.sass";
 
 const About: FC = () => {
   return (
@@ -12,16 +13,14 @@ const About: FC = () => {
       <div id="about">
         <h1>About me</h1>
         <p>
-          就讀臺南高工主攻Rust, Kotlin, TypeScript等語言，略懂網路、Docker、Compiler、Linux kernel
+          就讀雲科主攻Rust, Kotlin,
+          TypeScript等語言，略懂網路、Docker、Compiler、Linux kernel，
+          目前當個社畜。
           <br />
           貢獻Deno_std, Vlang等專案
         </p>
         <div id="contact">
-          <Link
-            src={Discord}
-            title="xiao xigua#5978"
-            color="#004daa"
-          />
+          <Link src={Discord} title="xiaoxigua" color="#004daa" />
           <Link
             src={Twitter}
             title="@XiguaXiao"
@@ -35,6 +34,13 @@ const About: FC = () => {
             color="#000000ff"
             click={true}
             href="https://github.com/xiaoxigua-1"
+          />
+          <Link
+            src={Telegram}
+            title="@xiao_xigua"
+            color="#000000ff"
+            click={true}
+            href="https://t.me/xiao_xigua"
           />
           <Link
             src={RSS}
