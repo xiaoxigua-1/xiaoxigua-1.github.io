@@ -38,7 +38,7 @@ const About: FC = () => {
           <Link
             src={Telegram}
             title="@xiao_xigua"
-            color="#000000ff"
+            color="#009dff"
             click={true}
             href="https://t.me/xiao_xigua"
           />
