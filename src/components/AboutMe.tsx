@@ -5,6 +5,7 @@ import Twitter from "./svg/twitter.svg";
 import GitHub from "./svg/github.svg";
 import RSS from "./svg/rss.svg";
 import Telegram from "./svg/telegram.svg";
+import Email from "./svg/email.svg";
 import "./sass/about.sass";
 
 const About: FC = () => {
@@ -49,6 +50,7 @@ const About: FC = () => {
             click={true}
             href="https://xiaoxigua-1.github.io/blog/"
           />
+          <Link src={Email} title="xigua@xigua.tw" color="#000000ff" />
         </div>
       </div>
     </div>
