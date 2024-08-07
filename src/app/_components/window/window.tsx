@@ -35,12 +35,16 @@ export function createWindowState(
 export default function Window({ state, setState }: WindowProps) {
   return (
     <div
-      className="absolute bg-blue-500/50 rounded-xl backdrop-blur"
+      className={`absolute bg-blue-500/50 rounded-xl backdrop-blur ${
+        state.move || state.resizeEvent
+          ? null
+          : "transition-[width,height,top,left]"
+      }`}
       style={{
-        width: state.width,
-        height: state.height,
-        top: state.y,
-        left: state.x,
+        width: state.maximize ? "100%" : state.width,
+        height: state.maximize ? "100%" : state.height,
+        top: state.maximize ? 0 : state.y,
+        left: state.maximize ? 0 : state.x,
       }}
     >
       <AppBar state={state} setState={setState} />

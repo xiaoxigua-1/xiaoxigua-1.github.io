@@ -7,7 +7,8 @@ interface AppBarProps {
 
 export default function AppBar({ state, setState }: AppBarProps) {
   const windowMoveStart = (e: React.MouseEvent) => {
-    setState({ move: { x: e.clientX - state.x, y: e.clientY - state.y } });
+    if (!state.maximize)
+      setState({ move: { x: e.clientX - state.x, y: e.clientY - state.y } });
   };
 
   const windowMoveEnd = () => {
@@ -30,7 +31,7 @@ export default function AppBar({ state, setState }: AppBarProps) {
         />
         <div
           className="w-5 h-5 rounded-full bg-green-400 hover:bg-green-400/60 cursor-pointer"
-          onClick={() => setState({ maximize: true })}
+          onClick={() => setState({ maximize: !state.maximize })}
         />
         <div
           className="w-5 h-5 rounded-full bg-red-400 hover:bg-red-400/60 cursor-pointer"
