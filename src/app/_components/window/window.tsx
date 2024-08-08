@@ -4,7 +4,7 @@ import WindowState, { WindowStateObj } from "./windowState";
 
 interface WindowProps {
   state: WindowState;
-  setState: (obj: WindowStateObj) => void;
+  setState: (...obj: WindowStateObj[]) => void;
 }
 
 export function createWindowState(
@@ -13,7 +13,7 @@ export function createWindowState(
   height: number = 600,
   x: number = window.innerWidth / 2 - 400,
   y: number = window.innerHeight / 2 - 300,
-): [WindowState, (obj: WindowStateObj) => void] {
+): [WindowState, (...obj: WindowStateObj[]) => void] {
   const [state, setState] = useState<WindowState>({
     title,
     x,
@@ -26,8 +26,9 @@ export function createWindowState(
     maximize: false,
     close: false,
   });
-  const setStateHandle = (obj: WindowStateObj) =>
-    setState({ ...state, ...obj });
+  const setStateHandle = (...obj: WindowStateObj[]) => {
+    setState(Object.assign({ ...state }, ...obj));
+  };
 
   return [state, setStateHandle];
 }

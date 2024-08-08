@@ -2,7 +2,7 @@ import WindowState, { WindowStateObj } from "./windowState";
 
 interface AppBarProps {
   state: WindowState;
-  setState: (state: WindowStateObj) => void;
+  setState: (...state: WindowStateObj[]) => void;
 }
 
 export default function AppBar({ state, setState }: AppBarProps) {
