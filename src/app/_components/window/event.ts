@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import WindowState, { WindowStateObj } from "./windowState";
-import { WindowResizeEventType } from "./windowResizeEvent";
+import { getCursorStyle, WindowResizeEventType } from "./windowResizeEvent";
 
 export function mouseMoveEffect(
   states: WindowState[],
@@ -13,7 +13,22 @@ export function mouseMoveEffect(
 
       for (const index in states) {
         const state = states[index];
+        const resizeX = x - (state.resizeEvent?.start?.original[0] || 0);
+        const resizeY = y - (state.resizeEvent?.start?.original[1] || 0);
         const data: WindowStateObj[] = [];
+
+        // Check bounds
+        const leftBounds = state.x - 8 < x && x < state.x + 8;
+        const rightBounds =
+          state.x + state.width - 8 < x && x < state.x + state.width + 8;
+        const topBounds = state.y - 8 < y && y < state.y + 8;
+        const bottomBounds =
+          state.y + state.height - 8 < y && y < state.y + state.height + 8;
+
+        const verticalBounds =
+          state.y + 8 < y && y < state.y + state.height - 8;
+        const horizontalBounds =
+          state.x + 8 < x && x < state.x + state.width - 8;
 
         // Move window event
         if (state.move) {
@@ -23,59 +38,135 @@ export function mouseMoveEffect(
           });
         }
 
-        // Change User cursor
-        if (
-          // Left
-          state.x - 8 < x &&
-          x < state.x + 8 &&
-          state.y + 8 < y &&
-          y < state.y + state.height - 8
-        ) {
-          data.push({
-            resizeEvent: { type: WindowResizeEventType.Left, start: false },
-          });
-        } else if (
-          // Right
-          state.x + state.width - 8 < x &&
-          x < state.x + state.width + 8 &&
-          state.y + 8 < y &&
-          y < state.y + state.height - 8
-        ) {
-          data.push({
-            resizeEvent: { type: WindowResizeEventType.Right, start: false },
-          });
-        } else if (
-          // Top
-          state.y - 8 < y &&
-          y < state.y + 8 &&
-          state.x + 8 < x &&
-          x < state.x + state.width - 8
-        ) {
-          data.push({
-            resizeEvent: { type: WindowResizeEventType.Top, start: false },
-          });
-        } else if (
-          // Bottom
-          state.y + state.height - 8 < y &&
-          y < state.y + state.height + 8 &&
-          state.x + 8 < x &&
-          x < state.x + state.width - 8
-        ) {
-          data.push({
-            resizeEvent: { type: WindowResizeEventType.Bottom, start: false },
-          });
-        } else if (!state.resizeEvent?.start) {
+        // Check resize event type
+        const edges = [
+          {
+            type: WindowResizeEventType.Left,
+            condition: leftBounds && verticalBounds,
+          },
+          {
+            type: WindowResizeEventType.Right,
+            condition: rightBounds && verticalBounds,
+          },
+          {
+            type: WindowResizeEventType.Top,
+            condition: topBounds && horizontalBounds,
+          },
+          {
+            type: WindowResizeEventType.Bottom,
+            condition: bottomBounds && horizontalBounds,
+          },
+          {
+            type: WindowResizeEventType.LeftTop,
+            condition: leftBounds && topBounds,
+          },
+          {
+            type: WindowResizeEventType.RightTop,
+            condition: rightBounds && topBounds,
+          },
+          {
+            type: WindowResizeEventType.RightBottom,
+            condition: rightBounds && bottomBounds,
+          },
+          {
+            type: WindowResizeEventType.LeftBottom,
+            condition: leftBounds && bottomBounds,
+          },
+        ];
+
+        if (!state.resizeEvent?.start) {
           data.push({
             resizeEvent: null,
           });
+
+          for (const edge of edges) {
+            if (edge.condition) {
+              data.push({
+                resizeEvent: { type: edge.type, start: null },
+              });
+
+              break;
+            }
+          }
         }
 
-        document.body.style.cursor = state.resizeEvent?.type ?? "default";
+        // set cursor style
+        document.body.style.cursor = getCursorStyle(state.resizeEvent?.type);
 
         // Resize window event
+        if (state.resizeEvent?.start) {
+          // Top resize
+          switch (state.resizeEvent?.type) {
+            case WindowResizeEventType.Top:
+            case WindowResizeEventType.LeftTop:
+            case WindowResizeEventType.RightTop:
+              data.push({
+                y: state.resizeEvent.start.original[1] + resizeY,
+                height: state.resizeEvent.start.height - resizeY,
+              });
+          }
+
+          // Right resize
+          switch (state.resizeEvent?.type) {
+            case WindowResizeEventType.Right:
+            case WindowResizeEventType.RightTop:
+            case WindowResizeEventType.RightBottom:
+              data.push({
+                width: state.resizeEvent.start.width + resizeX,
+              });
+          }
+
+          // Bottom resize
+          switch (state.resizeEvent?.type) {
+            case WindowResizeEventType.Bottom:
+            case WindowResizeEventType.LeftBottom:
+            case WindowResizeEventType.RightBottom:
+              data.push({
+                height: state.resizeEvent.start.height + resizeY,
+              });
+          }
+
+          // Left resize
+          switch (state.resizeEvent?.type) {
+            case WindowResizeEventType.Left:
+            case WindowResizeEventType.LeftTop:
+            case WindowResizeEventType.LeftBottom:
+              data.push({
+                x: state.resizeEvent.start.original[0] + resizeX,
+                width: state.resizeEvent.start.width - resizeX,
+              });
+          }
+        }
 
         // Chage state
         setStates[index](...data);
+      }
+    };
+
+    onmousedown = (event) => {
+      for (const index in states) {
+        const state = states[index];
+        if (state.resizeEvent)
+          setStates[index]({
+            resizeEvent: {
+              type: state.resizeEvent.type,
+              start: {
+                width: state.width,
+                height: state.height,
+                original: [event.clientX, event.clientY],
+              },
+            },
+          });
+      }
+    };
+
+    onmouseup = () => {
+      for (const index in states) {
+        const state = states[index];
+        if (state.resizeEvent)
+          setStates[index]({
+            resizeEvent: { type: state.resizeEvent.type, start: null },
+          });
       }
     };
   }, states);

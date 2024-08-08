@@ -37,7 +37,7 @@ export default function Window({ state, setState }: WindowProps) {
   return (
     <div
       className={`absolute bg-blue-500/50 rounded-xl backdrop-blur ${
-        state.move || state.resizeEvent
+        state.move || state.resizeEvent?.start
           ? null
           : "transition-[width,height,top,left]"
       }`}

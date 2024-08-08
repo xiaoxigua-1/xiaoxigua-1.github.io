@@ -1,17 +1,40 @@
 export enum WindowResizeEventType {
-  LeftTop = "nwse-resize",
-  Top = "ns-resize",
-  RightTop = "nesw-resize",
-  Right = "ew-resize",
-  RightBottom = "nwse-resize",
-  Bottom = "ns-resize",
-  LeftBottom = "nesw-resize",
-  Left = "ew-resize",
+  LeftTop,
+  Top,
+  RightTop,
+  Right,
+  RightBottom,
+  Bottom,
+  LeftBottom,
+  Left,
+}
+
+export function getCursorStyle(type?: WindowResizeEventType): string {
+  switch (type) {
+    case WindowResizeEventType.LeftTop:
+    case WindowResizeEventType.RightBottom:
+      return "nwse-resize";
+    case WindowResizeEventType.Top:
+    case WindowResizeEventType.Bottom:
+      return "ns-resize";
+    case WindowResizeEventType.RightTop:
+    case WindowResizeEventType.LeftBottom:
+      return "nesw-resize";
+    case WindowResizeEventType.Right:
+    case WindowResizeEventType.Left:
+      return "ew-resize";
+    default:
+      return "default";
+  }
 }
 
 interface WindowResizeEvent {
   type: WindowResizeEventType;
-  start: boolean;
+  start: {
+    width: number;
+    height: number;
+    original: [number, number];
+  } | null;
 }
 
 export default WindowResizeEvent;
