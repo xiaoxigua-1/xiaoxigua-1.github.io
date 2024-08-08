@@ -5,6 +5,7 @@ import WindowState, { WindowStateObj } from "./windowState";
 interface WindowProps {
   state: WindowState;
   setState: (...obj: WindowStateObj[]) => void;
+  content?: JSX.Element;
 }
 
 export function createWindowState(
@@ -33,22 +34,26 @@ export function createWindowState(
   return [state, setStateHandle];
 }
 
-export default function Window({ state, setState }: WindowProps) {
+export default function Window({ state, setState, content }: WindowProps) {
+  const style = {
+    width: state.maximize ? "100%" : state.minmize ? 0 : state.width,
+    height: state.maximize ? "100%" : state.minmize ? 0 : state.height,
+    top: state.maximize ? 0 : state.minmize ? window.innerHeight : state.y,
+    left: state.maximize ? 0 : state.minmize ? window.innerWidth / 2 : state.x,
+    opacity: state.minmize ? "0" : "",
+  };
+
   return (
     <div
-      className={`absolute bg-blue-500/50 rounded-xl backdrop-blur ${
+      className={`absolute bg-blue-500/50 rounded-xl backdrop-blur overflow-hidden flex flex-col ${
         state.move || state.resizeEvent?.start
           ? null
-          : "transition-[width,height,top,left]"
+          : "transition-[width,height,top,left,opacity]"
       }`}
-      style={{
-        width: state.maximize ? "100%" : state.width,
-        height: state.maximize ? "100%" : state.height,
-        top: state.maximize ? 0 : state.y,
-        left: state.maximize ? 0 : state.x,
-      }}
+      style={style}
     >
       <AppBar state={state} setState={setState} />
+      <div className="flex-1">{content}</div>
     </div>
   );
 }

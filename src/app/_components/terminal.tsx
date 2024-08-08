@@ -1,3 +1,3 @@
 export default function Terminal() {
-  return <main></main>;
+  return <div className="">Hi</div>;
 }

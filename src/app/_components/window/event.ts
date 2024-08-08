@@ -93,17 +93,18 @@ export function mouseMoveEffect(
         // set cursor style
         document.body.style.cursor = getCursorStyle(state.resizeEvent?.type);
 
-        // Resize window event
+        // Resize window
         if (state.resizeEvent?.start) {
           // Top resize
           switch (state.resizeEvent?.type) {
             case WindowResizeEventType.Top:
             case WindowResizeEventType.LeftTop:
             case WindowResizeEventType.RightTop:
-              data.push({
-                y: state.resizeEvent.start.original[1] + resizeY,
-                height: state.resizeEvent.start.height - resizeY,
-              });
+              if (state.resizeEvent.start.height - resizeY > 600)
+                data.push({
+                  y: state.resizeEvent.start.original[1] + resizeY,
+                  height: state.resizeEvent.start.height - resizeY,
+                });
           }
 
           // Right resize
@@ -111,9 +112,10 @@ export function mouseMoveEffect(
             case WindowResizeEventType.Right:
             case WindowResizeEventType.RightTop:
             case WindowResizeEventType.RightBottom:
-              data.push({
-                width: state.resizeEvent.start.width + resizeX,
-              });
+              if (state.resizeEvent.start.width + resizeX > 800)
+                data.push({
+                  width: state.resizeEvent.start.width + resizeX,
+                });
           }
 
           // Bottom resize
@@ -121,9 +123,10 @@ export function mouseMoveEffect(
             case WindowResizeEventType.Bottom:
             case WindowResizeEventType.LeftBottom:
             case WindowResizeEventType.RightBottom:
-              data.push({
-                height: state.resizeEvent.start.height + resizeY,
-              });
+              if (state.resizeEvent.start.height + resizeY > 600)
+                data.push({
+                  height: state.resizeEvent.start.height + resizeY,
+                });
           }
 
           // Left resize
@@ -131,10 +134,11 @@ export function mouseMoveEffect(
             case WindowResizeEventType.Left:
             case WindowResizeEventType.LeftTop:
             case WindowResizeEventType.LeftBottom:
-              data.push({
-                x: state.resizeEvent.start.original[0] + resizeX,
-                width: state.resizeEvent.start.width - resizeX,
-              });
+              if (state.resizeEvent.start.width - resizeX > 800)
+                data.push({
+                  x: state.resizeEvent.start.original[0] + resizeX,
+                  width: state.resizeEvent.start.width - resizeX,
+                });
           }
         }
 
@@ -143,6 +147,7 @@ export function mouseMoveEffect(
       }
     };
 
+    // Resize start event
     onmousedown = (event) => {
       for (const index in states) {
         const state = states[index];
@@ -160,6 +165,7 @@ export function mouseMoveEffect(
       }
     };
 
+    // Resize end event
     onmouseup = () => {
       for (const index in states) {
         const state = states[index];
