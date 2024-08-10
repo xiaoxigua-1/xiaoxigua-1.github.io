@@ -25,7 +25,11 @@ export default function Dock({ windowContainer }: DockProps) {
             onClick={() =>
               windowContainer.setState(
                 index,
-                { minmize: !windowContainer.getState(index).minmize },
+                {
+                  minmize: state.close
+                    ? false
+                    : !windowContainer.getState(index).minmize,
+                },
                 { close: false },
               )
             }

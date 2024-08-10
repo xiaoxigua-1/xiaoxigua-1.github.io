@@ -64,10 +64,24 @@ export function createWindow(window: Window, centent: JSX.Element): Window {
 
 export default function Window({ state, setState, content }: WindowProps) {
   const style = {
-    width: state.maximize ? "100%" : state.minmize ? 0 : state.width,
-    height: state.maximize ? "100%" : state.minmize ? 0 : state.height,
-    top: state.maximize ? 0 : state.minmize ? window.innerHeight : state.y,
-    left: state.maximize ? 0 : state.minmize ? window.innerWidth / 2 : state.x,
+    width:
+      state.minmize || state.close ? 0 : state.maximize ? "100%" : state.width,
+    height:
+      state.minmize || state.close ? 0 : state.maximize ? "100%" : state.height,
+    top: state.close
+      ? window.innerHeight / 2
+      : state.minmize
+        ? window.innerHeight
+        : state.maximize
+          ? 0
+          : state.y,
+    left: state.close
+      ? window.innerWidth / 2
+      : state.minmize
+        ? window.innerWidth / 2
+        : state.maximize
+          ? 0
+          : state.x,
     opacity: state.minmize ? "0" : "",
   };
 
