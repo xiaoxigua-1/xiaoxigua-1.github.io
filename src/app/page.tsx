@@ -1,30 +1,29 @@
 "use client";
 
 import { useState } from "react";
-import Window, { createWindowState } from "./_components/window/window";
+import { createWindow, createWindowState } from "./_components/window/window";
 import { mouseMoveEffect } from "./_components/window/event";
 import Terminal from "./_components/terminal";
 import Dock from "./_components/dock/dock";
 import { ThemeContext } from "./theme";
+import WindowContainer from "./windowContainer";
 
 export default function Home() {
-  const [windowState, setWindowState] = createWindowState("xiaoxigua");
   const [theme, _] = useState<"dark" | "light">("dark");
 
-  mouseMoveEffect([windowState], [setWindowState]);
+  const windowContainer = WindowContainer(
+    createWindow(createWindowState("Terminal"), <Terminal />),
+  );
+
+  mouseMoveEffect(windowContainer);
 
   return (
     <main className={`text-[--${theme}-text-color]`}>
       <ThemeContext.Provider value={{ theme: theme }}>
-        <Window
-          state={windowState}
-          setState={setWindowState}
-          content={<Terminal />}
-        />
-        <Dock
-          states={[windowState, windowState]}
-          setStates={[setWindowState]}
-        />
+        {windowContainer.childrens.map((window, index) => (
+          <div key={index}>{window}</div>
+        ))}
+        <Dock windowContainer={windowContainer} />
       </ThemeContext.Provider>
     </main>
   );

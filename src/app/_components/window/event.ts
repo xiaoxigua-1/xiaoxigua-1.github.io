@@ -1,18 +1,16 @@
 import { useEffect } from "react";
 import WindowState, { WindowStateObj } from "./windowState";
 import { getCursorStyle, WindowResizeEventType } from "./windowResizeEvent";
+import { WindowContainer } from "@/app/windowContainer";
 
-export function mouseMoveEffect(
-  states: WindowState[],
-  setStates: ((...state: WindowStateObj[]) => void)[],
-) {
+export function mouseMoveEffect(container: WindowContainer) {
   useEffect(() => {
     onmousemove = (event) => {
       const x = event.clientX;
       const y = event.clientY;
 
-      for (const index in states) {
-        const state = states[index];
+      for (let index = 0; index < container.index; index++) {
+        const state = container.getState(index);
         const resizeX = x - (state.resizeEvent?.start?.original[0] || 0);
         const resizeY = y - (state.resizeEvent?.start?.original[1] || 0);
         const data: WindowStateObj[] = [];
@@ -143,16 +141,16 @@ export function mouseMoveEffect(
         }
 
         // Chage state
-        setStates[index](...data);
+        container.setState(index, ...data);
       }
     };
 
     // Resize start event
     onmousedown = (event) => {
-      for (const index in states) {
-        const state = states[index];
+      for (let index = 0; index < container.index; index++) {
+        const state = container.getState(index);
         if (state.resizeEvent)
-          setStates[index]({
+          container.setState(index, {
             resizeEvent: {
               type: state.resizeEvent.type,
               start: {
@@ -167,13 +165,13 @@ export function mouseMoveEffect(
 
     // Resize end event
     onmouseup = () => {
-      for (const index in states) {
-        const state = states[index];
+      for (let index = 0; index < container.index; index++) {
+        const state = container.getState(index);
         if (state.resizeEvent)
-          setStates[index]({
+          container.setState(index, {
             resizeEvent: { type: state.resizeEvent.type, start: null },
           });
       }
     };
-  }, states);
+  }, container.allStates);
 }

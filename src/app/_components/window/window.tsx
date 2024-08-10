@@ -8,13 +8,19 @@ interface WindowProps {
   content?: JSX.Element;
 }
 
+interface Window {
+  state: WindowState;
+  setState: (...obj: WindowStateObj[]) => void;
+  children?: JSX.Element;
+}
+
 export function createWindowState(
   title: string,
   width: number = 800,
   height: number = 600,
   x: number = window.innerWidth / 2 - 400,
   y: number = window.innerHeight / 2 - 300,
-): [WindowState, (...obj: WindowStateObj[]) => void] {
+): Window {
   const [state, setState] = useState<WindowState>({
     title,
     x,
@@ -31,7 +37,27 @@ export function createWindowState(
     setState(Object.assign({ ...state }, ...obj));
   };
 
-  return [state, setStateHandle];
+  return {
+    state,
+    setState: setStateHandle,
+  };
+}
+
+export function createWindow(window: Window, centent: JSX.Element): Window {
+  if (!window.children) {
+    return {
+      ...window,
+      children: (
+        <Window
+          state={window.state}
+          setState={window.setState}
+          content={centent}
+        />
+      ),
+    };
+  } else {
+    return window;
+  }
 }
 
 export default function Window({ state, setState, content }: WindowProps) {

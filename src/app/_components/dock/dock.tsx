@@ -1,13 +1,12 @@
 import { useContext } from "react";
 import { ThemeContext } from "../../theme";
-import WindowState, { WindowStateObj } from "../window/windowState";
+import { WindowContainer } from "../../windowContainer";
 
 interface DockProps {
-  states: WindowState[];
-  setStates: ((...state: WindowStateObj[]) => void)[];
+  windowContainer: WindowContainer;
 }
 
-export default function Dock({ states, setStates }: DockProps) {
+export default function Dock({ windowContainer }: DockProps) {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -15,7 +14,7 @@ export default function Dock({ states, setStates }: DockProps) {
       <div
         className={`w-20 h-20 group-hover:w-32 group-hover:h-32 rounded-full opacity-50 group-hover:opacity-90 transition-[width,height,opacity] bg-[--${theme}-bg-color]`}
       >
-        {states.map((_, index) => (
+        {windowContainer.allStates.map((_, index) => (
           <div
             key={index}
             style={
