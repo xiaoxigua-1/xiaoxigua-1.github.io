@@ -7,12 +7,16 @@ import Terminal from "./_components/terminal";
 import Dock from "./_components/dock/dock";
 import { ThemeContext } from "./theme";
 import WindowContainer from "./windowContainer";
+import { BsTerminal } from "react-icons/bs";
 
 export default function Home() {
   const [theme, _] = useState<"dark" | "light">("dark");
 
   const windowContainer = WindowContainer(
-    createWindow(createWindowState("Terminal"), <Terminal />),
+    createWindow(
+      createWindowState("Terminal", <BsTerminal size={30} />),
+      <Terminal />,
+    ),
   );
 
   mouseMoveEffect(windowContainer);

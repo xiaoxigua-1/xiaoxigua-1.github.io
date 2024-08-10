@@ -16,6 +16,7 @@ interface Window {
 
 export function createWindowState(
   title: string,
+  icon?: JSX.Element,
   width: number = 800,
   height: number = 600,
   x: number = window.innerWidth / 2 - 400,
@@ -23,6 +24,7 @@ export function createWindowState(
 ): Window {
   const [state, setState] = useState<WindowState>({
     title,
+    icon,
     x,
     y,
     width,

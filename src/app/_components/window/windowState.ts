@@ -11,6 +11,7 @@ interface WindowMoveInitialize {
 
 interface WindowState {
   title: string;
+  icon?: JSX.Element;
 
   x: number;
   y: number;
