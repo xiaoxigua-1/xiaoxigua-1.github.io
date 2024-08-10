@@ -4,8 +4,10 @@
 
 :root {
   overflow: hidden;
-  --dark-color: #242b39bb;
-  --light-color: #eceff4bb;
+  --dark-bg-color: #242b39bb;
+  --light-bg-color: #eceff4bb;
+  --dark-text-color: #ffffff;
+  --light-text-color: #2e3440;
   background: rgb(230, 85, 85);
   background: linear-gradient(
     45deg,
@@ -16,7 +18,6 @@
 }
 
 body {
-  color: rgba(255, 255, 255, 0.9);
   width: 100vw;
   height: 100vh;
 }
