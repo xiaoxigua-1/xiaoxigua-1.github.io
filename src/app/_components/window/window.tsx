@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import AppBar from "./appBar";
 import WindowState, { WindowStateObj } from "./windowState";
+import { ThemeContext } from "@/app/theme";
 
 interface WindowProps {
   state: WindowState;
@@ -84,10 +85,11 @@ export default function Window({ state, setState, content }: WindowProps) {
           : state.x,
     opacity: state.minmize ? "0" : "",
   };
+  const { theme } = useContext(ThemeContext);
 
   return (
     <div
-      className={`absolute bg-blue-500/50 rounded-xl backdrop-blur overflow-hidden flex flex-col ${
+      className={`absolute bg-[--${theme}-bg-color] rounded-xl backdrop-blur overflow-hidden flex flex-col ${
         state.move || state.resizeEvent?.start
           ? null
           : "transition-[width,height,top,left,opacity]"
