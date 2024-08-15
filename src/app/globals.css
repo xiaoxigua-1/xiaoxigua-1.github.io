@@ -27,3 +27,9 @@ body {
     text-wrap: balance;
   }
 }
+
+@layer components {
+  .icon-tip {
+    @apply relative flex items-center justify-center mx-3 before:px-3 before:py-1 before:absolute hover:before:top-full hover:before:opacity-100 before:top-0 before:opacity-0 before:rounded-md before:z-40 before:text-white before:transition-all before:w-full before:overflow-hidden before:font-bold;
+  }
+}
