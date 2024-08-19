@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const links = [
   {
-    link: "https://github.com/xiaoxigua",
+    link: "https://github.com/xiaoxigua-1",
     name: "GitHub",
     icon: <FaGithub size="100%" />,
   },
