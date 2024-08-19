@@ -3,6 +3,11 @@ import AppBar from "./appBar";
 import WindowState, { WindowStateObj } from "./windowState";
 import { ThemeContext } from "@/app/theme";
 
+const window: globalThis.Window | { innerWidth: number; innerHeight: number } =
+  typeof global.window !== "undefined"
+    ? global.window
+    : { innerWidth: 800, innerHeight: 600 };
+
 interface WindowProps {
   state: WindowState;
   setState: (...obj: WindowStateObj[]) => void;
