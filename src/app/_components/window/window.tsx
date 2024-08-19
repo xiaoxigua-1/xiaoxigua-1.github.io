@@ -2,6 +2,11 @@ import { useContext, useState } from "react";
 import AppBar from "./appBar";
 import WindowState, { WindowStateObj } from "./windowState";
 import { ThemeContext } from "@/app/theme";
+import dynamic from "next/dynamic";
+
+const WindowComp = dynamic(() => Promise.resolve(Window), {
+  ssr: false,
+});
 
 const window: globalThis.Window | { innerWidth: number; innerHeight: number } =
   typeof global.window !== "undefined"
@@ -56,7 +61,7 @@ export function createWindow(window: Window, centent: JSX.Element): Window {
     return {
       ...window,
       children: (
-        <Window
+        <WindowComp
           state={window.state}
           setState={window.setState}
           content={centent}

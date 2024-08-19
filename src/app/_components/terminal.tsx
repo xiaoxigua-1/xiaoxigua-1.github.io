@@ -31,12 +31,13 @@ const links = [
 ];
 
 export default function Terminal() {
-  const [time, setTime] = useState(new Date().toLocaleTimeString());
+  const [time, setTime] = useState(new Date());
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTime(new Date().toLocaleTimeString());
+      setTime(new Date());
     }, 1000);
+
     return () => {
       clearInterval(timer);
     };
@@ -64,7 +65,7 @@ export default function Terminal() {
           </div>
           <span className="w-0 h-0 border-y-transparent border-r-white border-y-[10px] border-r-[10px] border-solid bg-black" />
           <span className="h-5 flex px-2 items-center bg-white text-black text-sm">
-            {time}
+            {time.toLocaleTimeString()}
           </span>
         </div>
       </div>
