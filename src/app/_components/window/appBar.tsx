@@ -31,7 +31,11 @@ export default function AppBar({ state, setState }: AppBarProps) {
         />
         <div
           className="w-5 h-5 rounded-full bg-green-400 hover:bg-green-400/60 cursor-pointer"
-          onClick={() => setState({ maximize: !state.maximize })}
+          onClick={() =>
+            window.innerWidth > 800
+              ? setState({ maximize: !state.maximize })
+              : null
+          }
         />
         <div
           className="w-5 h-5 rounded-full bg-red-400 hover:bg-red-400/60 cursor-pointer"

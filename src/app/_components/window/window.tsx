@@ -33,7 +33,7 @@ export function createWindowState(
     resizeEvent: null,
     move: null,
     minmize: false,
-    maximize: false,
+    maximize: window.innerWidth < 800,
     close: false,
   });
   const setStateHandle = (...obj: WindowStateObj[]) => {
