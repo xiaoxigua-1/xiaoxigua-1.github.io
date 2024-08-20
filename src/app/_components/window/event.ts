@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import WindowState, { WindowStateObj } from "./windowState";
+import { WindowStateObj } from "./windowState";
 import { getCursorStyle, WindowResizeEventType } from "./windowResizeEvent";
 import { WindowContainer } from "@/app/windowContainer";
 
@@ -8,6 +8,7 @@ export function mouseMoveEffect(container: WindowContainer) {
     onmousemove = (event) => {
       const x = event.clientX;
       const y = event.clientY;
+      let isResize = false;
 
       for (let index = 0; index < container.index; index++) {
         const state = container.getState(index);
@@ -89,7 +90,10 @@ export function mouseMoveEffect(container: WindowContainer) {
         }
 
         // set cursor style
-        document.body.style.cursor = getCursorStyle(state.resizeEvent?.type);
+        if (state.resizeEvent?.type) {
+          isResize = true;
+          document.body.style.cursor = getCursorStyle(state.resizeEvent.type);
+        }
 
         // Resize window
         if (state.resizeEvent?.start) {
@@ -143,6 +147,8 @@ export function mouseMoveEffect(container: WindowContainer) {
         // Chage state
         container.setState(index, ...data);
       }
+
+      if (!isResize) document.body.style.cursor = "default";
     };
 
     // Resize start event

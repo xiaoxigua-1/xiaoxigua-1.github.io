@@ -24,7 +24,7 @@ export function getCursorStyle(type?: WindowResizeEventType): string {
     case WindowResizeEventType.Left:
       return "ew-resize";
     default:
-      return "default";
+      return "";
   }
 }
 

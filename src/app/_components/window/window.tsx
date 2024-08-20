@@ -17,12 +17,15 @@ interface WindowProps {
   state: WindowState;
   setState: (...obj: WindowStateObj[]) => void;
   content?: JSX.Element;
+  zIndex: number;
 }
 
-interface Window {
+export interface WindowInterface {
   state: WindowState;
   setState: (...obj: WindowStateObj[]) => void;
   children?: JSX.Element;
+  zIndex: number;
+  setZIndex: (zIndex: number) => void;
 }
 
 export function createWindowState(
@@ -32,7 +35,7 @@ export function createWindowState(
   height: number = 600,
   x: number = window.innerWidth / 2 - 400,
   y: number = window.innerHeight / 2 - 300,
-): Window {
+): WindowInterface {
   const [state, setState] = useState<WindowState>({
     title,
     icon,
@@ -46,6 +49,7 @@ export function createWindowState(
     maximize: window.innerWidth < 800,
     close: false,
   });
+  const [zIndex, setZIndex] = useState(0);
   const setStateHandle = (...obj: WindowStateObj[]) => {
     setState(Object.assign({ ...state }, ...obj));
   };
@@ -53,10 +57,15 @@ export function createWindowState(
   return {
     state,
     setState: setStateHandle,
+    zIndex,
+    setZIndex,
   };
 }
 
-export function createWindow(window: Window, centent: JSX.Element): Window {
+export function createWindow(
+  window: WindowInterface,
+  centent: JSX.Element,
+): WindowInterface {
   if (!window.children) {
     return {
       ...window,
@@ -65,6 +74,7 @@ export function createWindow(window: Window, centent: JSX.Element): Window {
           state={window.state}
           setState={window.setState}
           content={centent}
+          zIndex={window.zIndex}
         />
       ),
     };
@@ -73,7 +83,12 @@ export function createWindow(window: Window, centent: JSX.Element): Window {
   }
 }
 
-export default function Window({ state, setState, content }: WindowProps) {
+export default function Window({
+  state,
+  setState,
+  content,
+  zIndex,
+}: WindowProps) {
   const style = {
     width:
       state.minmize || state.close ? 0 : state.maximize ? "100%" : state.width,
@@ -94,6 +109,7 @@ export default function Window({ state, setState, content }: WindowProps) {
           ? 0
           : state.x,
     opacity: state.minmize ? "0" : "",
+    zIndex: zIndex,
   };
   const { theme } = useContext(ThemeContext);
 
