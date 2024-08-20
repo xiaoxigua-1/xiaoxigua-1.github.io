@@ -28,7 +28,7 @@ export interface WindowInterface {
   setZIndex: (zIndex: number) => void;
 }
 
-export function createWindowState(
+export function useWindowState(
   title: string,
   icon?: JSX.Element,
   width: number = 800,

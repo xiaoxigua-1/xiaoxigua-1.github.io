@@ -3,7 +3,7 @@ import { WindowStateObj } from "./windowState";
 import { getCursorStyle, WindowResizeEventType } from "./windowResizeEvent";
 import { WindowContainer } from "@/app/windowContainer";
 
-export function mouseMoveEffect(container: WindowContainer) {
+export function useMouseMoveEffect(container: WindowContainer) {
   useEffect(() => {
     onmousemove = (event) => {
       const x = event.clientX;

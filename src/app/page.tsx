@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { createWindow, createWindowState } from "./_components/window/window";
-import { mouseMoveEffect } from "./_components/window/event";
+import { createWindow, useWindowState } from "./_components/window/window";
+import { useMouseMoveEffect } from "./_components/window/event";
 import Terminal from "./_components/terminal";
 import Dock from "./_components/dock/dock";
 import { ThemeContext } from "./theme";
@@ -15,7 +15,7 @@ export default function Home() {
 
   const windowContainer = WindowContainer(
     createWindow(
-      createWindowState("Terminal", <BsTerminal size={30} />),
+      useWindowState("Terminal", <BsTerminal size={30} />),
       <Terminal />,
     ),
   );
@@ -29,7 +29,7 @@ export default function Home() {
     setForce(index);
   };
 
-  mouseMoveEffect(windowContainer);
+  useMouseMoveEffect(windowContainer);
 
   return (
     <main className={`text-[--${theme}-text-color]`}>
