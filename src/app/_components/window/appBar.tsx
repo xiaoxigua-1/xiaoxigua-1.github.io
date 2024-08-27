@@ -16,7 +16,7 @@ export default function AppBar({ state, setState }: AppBarProps) {
   };
 
   return (
-    <div className="flex relative p-1 bg-gray-800 rounded-t-xl h-10 items-center select-none">
+    <div className="flex relative p-1 bg-gray-800 rounded-t-xl min-h-10 items-center select-none">
       <div
         className="w-[calc(100%-16px)] h-8 absolute left-0 mx-2 mt-2 z-10"
         onMouseDown={windowMoveStart}

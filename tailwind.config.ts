@@ -20,6 +20,7 @@ const config: Config = {
     "bg-[--light-bg-color]",
     "text-[--dark-text-color]",
     "text-[--light-text-color]",
+    "Unknown",
   ],
   plugins: [],
 };

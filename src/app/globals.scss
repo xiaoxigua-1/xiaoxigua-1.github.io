@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  overflow: hidden;
+  --dark-bg-color: #242b39bb;
+  --light-bg-color: #eceff4bb;
+  --dark-text-color: #ffffff;
+  --light-text-color: #2e3440;
+  background: rgb(230, 85, 85);
+  background: linear-gradient(
+    45deg,
+    rgba(230, 85, 85, 1) 0%,
+    rgba(157, 51, 140, 1) 46%,
+    rgba(56, 0, 77, 1) 100%
+  );
+}
+
+$rust-color: #dea584;
+$typescript-color: #2b7489;
+$css-color: #563d7c;
+$javascript-color: #f1e05a;
+$lua-color: #000080;
+$python-color: #3572a5;
+$scss-color: #c6538c;
+$shell-color: #89e051;
+$html-color: #e34c26;
+$docker-color: #0db7ed;
+$hcl-color: #5c4a72;
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.icon-tip {
+  @apply relative flex items-center justify-center mx-3 before:px-3 before:py-1 before:absolute hover:before:top-full hover:before:opacity-100 before:top-0 before:opacity-0 before:rounded-md before:z-40 before:text-white before:transition-all before:w-full before:overflow-hidden before:font-bold;
+}
+.card-Unknown {
+  @apply bg-slate-800 text-white;
+  .loading {
+    @apply bg-slate-700 mt-5;
+  }
+}
+
+$card-colors: (
+  "Rust": $rust-color,
+  "TypeScript": $typescript-color,
+  "CSS": $css-color,
+  "JavaScript": $javascript-color,
+  "Sass": $scss-color,
+  "Lua": $lua-color,
+  "Python": $python-color,
+  "Shell": $shell-color,
+  "HTML": $html-color,
+  "Dockerfile": $docker-color,
+  "HCL": $hcl-color,
+);
+
+@each $name, $color in $card-colors {
+  .card-#{$name} {
+    @apply text-white;
+    background: linear-gradient(
+      200deg,
+      darken($color, 20%),
+      desaturate($color, 30%)
+    );
+    p {
+      @apply text-gray-200;
+    }
+  }
+  .progress-#{$name} {
+    background: $color;
+  }
+}

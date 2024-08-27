@@ -45,7 +45,7 @@ export default function Terminal() {
 
   return (
     <div>
-      <div className="w-full max-w-[1000px] flex p-10 mx-auto items-center after:absolute after:w-4 after:h-6 after:-translate-x-4 after:translate-y-3 after:border-l-[2px] after:border-y-[2px] after:rounded-l-md before:content-['neofetch'] before:absolute before:translate-y-6 before:translate-x-2">
+      <div className="w-full max-w-[1000px] flex p-10 mx-auto items-center after:absolute after:w-4 after:h-6 after:-translate-x-4 after:translate-y-3 after:border-l-[2px] after:border-y-[2px] after:rounded-l-md before:content-['neofetch'] before:absolute before:translate-y-6 before:translate-x-2 relative">
         <div className="flex select-none">
           <div className="h-5 px-2 bg-white text-black flex items-center">
             <GrArchlinux />
@@ -89,10 +89,10 @@ export default function Terminal() {
           </div>
           <p className="mt-5 text-xl">Hello, I'm xiaoxigua</p>
           <div className="flex items-center mt-3 select-none">
-            <div className="icon-tip text-blue-300 before:content-['Student'] before:bg-blue-300 hover:before:w-[83px]">
+            <div className="icon-tip text-blue-300 before:content-['Student'] before:bg-blue-300 hover:before:w-[83px] before:pointer-events-none">
               <PiStudentFill size={30} />
             </div>
-            <div className="icon-tip text-red-300 before:content-['Frontend/Backend'] before:bg-red-300 hover:before:w-[163px]">
+            <div className="icon-tip text-red-300 before:content-['Frontend/Backend'] before:bg-red-300 hover:before:w-[163px] before:pointer-events-none">
               <PiCodeBold size={30} />
             </div>
           </div>

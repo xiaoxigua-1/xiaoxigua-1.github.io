@@ -29,6 +29,9 @@ export function useMouseMoveEffect(container: WindowContainer) {
         const horizontalBounds =
           state.x + 8 < x && x < state.x + state.width - 8;
 
+        // If Window is maxim, minmize or close skip
+        if (state.maximize || state.minmize || state.close) continue;
+
         // Move window event
         if (state.move) {
           data.push({

@@ -35,6 +35,7 @@ export function useWindowState(
   height: number = 600,
   x: number = window.innerWidth / 2 - 400,
   y: number = window.innerHeight / 2 - 300,
+  close: boolean = false,
 ): WindowInterface {
   const [state, setState] = useState<WindowState>({
     title,
@@ -47,7 +48,7 @@ export function useWindowState(
     move: null,
     minmize: false,
     maximize: window.innerWidth < 800,
-    close: false,
+    close,
   });
   const [zIndex, setZIndex] = useState(0);
   const setStateHandle = (...obj: WindowStateObj[]) => {
@@ -123,7 +124,7 @@ export default function Window({
       style={style}
     >
       <AppBar state={state} setState={setState} />
-      <div className="flex-1">{content}</div>
+      <div className="overflow-auto pb-36">{content}</div>
     </div>
   );
 }

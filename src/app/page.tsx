@@ -8,6 +8,8 @@ import Dock from "./_components/dock/dock";
 import { ThemeContext } from "./theme";
 import WindowContainer from "./windowContainer";
 import { BsTerminal } from "react-icons/bs";
+import Projects from "./_components/projects/projects";
+import { FaDiagramProject } from "react-icons/fa6";
 
 export default function Home() {
   const [theme, _] = useState<"dark" | "light">("dark");
@@ -17,6 +19,18 @@ export default function Home() {
     createWindow(
       useWindowState("Terminal", <BsTerminal size={30} />),
       <Terminal />,
+    ),
+    createWindow(
+      useWindowState(
+        "Projects",
+        <FaDiagramProject size={30} />,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        true,
+      ),
+      <Projects />,
     ),
   );
   const onForce = (index: number) => () => {
