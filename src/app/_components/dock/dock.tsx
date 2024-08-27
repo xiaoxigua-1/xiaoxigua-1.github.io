@@ -4,9 +4,10 @@ import { WindowContainer } from "../../windowContainer";
 
 interface DockProps {
   windowContainer: WindowContainer;
+  onForce: (index: number) => () => void;
 }
 
-export default function Dock({ windowContainer }: DockProps) {
+export default function Dock({ windowContainer, onForce }: DockProps) {
   const { theme } = useContext(ThemeContext);
 
   return (
@@ -22,17 +23,17 @@ export default function Dock({ windowContainer }: DockProps) {
                 "--index": index,
               } as React.CSSProperties
             }
-            onClick={() =>
+            onClick={() => {
               windowContainer.setState(
                 index,
                 {
-                  minmize: state.close
-                    ? false
-                    : !windowContainer.getState(index).minmize,
+                  minmize: state.close ? false : !state.minmize,
                 },
                 { close: false },
-              )
-            }
+              );
+
+              if (state.minmize || state.close) onForce(index)();
+            }}
             className={`lg:w-20 lg:h-20 w-16 h-16 rounded-full absolute top-1/4 left-0 lg:rotate-0 group-hover:rotate-[calc(var(--index)*45deg)] rotate-[calc(var(--index)*45deg)] group-hover:origin-[160px] origin-[160px] lg:origin-center lg:opacity-0 opacity-100 group-hover:opacity-100 transition-all delay-[calc(var(--index)*0.1s)] duration-100 lg:translate-x-[100px] translate-x-0 group-hover:translate-x-0 bg-[--${theme}-bg-color] flex items-center justify-center cursor-pointer pointer-events-auto`}
           >
             <div className="rotate-[calc(var(--index)*-45deg)]">

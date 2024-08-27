@@ -53,7 +53,7 @@ export default function Home() {
             {window}
           </div>
         ))}
-        <Dock windowContainer={windowContainer} />
+        <Dock windowContainer={windowContainer} onForce={onForce} />
       </ThemeContext.Provider>
     </main>
   );
