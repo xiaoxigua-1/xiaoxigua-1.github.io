@@ -4,7 +4,7 @@ export default function Progress(languagers: RepoLanguages) {
   const total = Object.values(languagers).reduce((a, b) => a + b, 0);
 
   return (
-    <div className="w-full rounded-lg h-2 flex overflow-hidden">
+    <div className="w-full rounded-lg h-2 flex overflow-hidden loading">
       {Object.entries(languagers).map(([language, count]) => (
         <div
           key={language}

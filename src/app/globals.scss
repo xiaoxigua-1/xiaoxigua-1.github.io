@@ -2,12 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+@mixin scroll-style(
+  $size: 10px,
+  $thumb: none,
+  $thumb-color: grey,
+  $thumb-radius: 10px,
+  $track-color: transparent,
+  $track-radius: 10px
+) {
+  // Respaldo para Firefox
+  @supports not (selector(::-webkit-scrollbar-thumb)) {
+    scrollbar-color: $thumb-color $track-color;
+    scrollbar-width: thin;
+  }
+
+  // Navegadores basados en webkit
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+    &-track {
+      background-color: $track-color;
+      border-radius: $track-radius;
+    }
+    &-thumb {
+      background-color: $thumb-color;
+      background-image: $thumb;
+      border-radius: $thumb-radius;
+    }
+  }
+}
+
 :root {
   overflow: hidden;
   --dark-bg-color: #242b39bb;
   --light-bg-color: #eceff4bb;
   --dark-text-color: #ffffff;
   --light-text-color: #2e3440;
+  --scroll-size: 5px;
+  --scroll-radius: 10px;
+  --scroll-track: rgb(255 255 255 / 10%);
+  --scroll-thumb-color: #fff;
   background: rgb(230, 85, 85);
   background: linear-gradient(
     45deg,
@@ -23,7 +57,7 @@ $css-color: #563d7c;
 $javascript-color: #f1e05a;
 $lua-color: #000080;
 $python-color: #3572a5;
-$scss-color: #c6538c;
+$sass-color: #c6538c;
 $shell-color: #89e051;
 $html-color: #e34c26;
 $docker-color: #0db7ed;
@@ -37,6 +71,7 @@ body {
 .icon-tip {
   @apply relative flex items-center justify-center mx-3 before:px-3 before:py-1 before:absolute hover:before:top-full hover:before:opacity-100 before:top-0 before:opacity-0 before:rounded-md before:z-40 before:text-white before:transition-all before:w-full before:overflow-hidden before:font-bold;
 }
+
 .card-Unknown {
   @apply bg-slate-800 text-white;
   .loading {
@@ -49,13 +84,14 @@ $card-colors: (
   "TypeScript": $typescript-color,
   "CSS": $css-color,
   "JavaScript": $javascript-color,
-  "Sass": $scss-color,
+  "Sass": $sass-color,
   "Lua": $lua-color,
   "Python": $python-color,
   "Shell": $shell-color,
   "HTML": $html-color,
   "Dockerfile": $docker-color,
   "HCL": $hcl-color,
+  "SCSS": $sass-color,
 );
 
 @each $name, $color in $card-colors {
@@ -73,4 +109,15 @@ $card-colors: (
   .progress-#{$name} {
     background: $color;
   }
+}
+
+.scroll {
+  @include scroll-style(
+    $size: var(--scroll-size, 10px),
+    $thumb: var(--scroll-thumb, none),
+    $thumb-color: var(--scroll-thumb-color, grey),
+    $thumb-radius: var(--scroll-thumb-radius, var(--scroll-radius)),
+    $track-color: var(--scroll-track, transparent),
+    $track-radius: var(--scroll-track-radius, var(--scroll-radius))
+  );
 }

@@ -35,11 +35,13 @@ export default function Project(props: ProjectProps) {
 
   return (
     <div
-      className={`flex flex-col p-5 w-full max-w-[500px] rounded-lg mt-10 lg:mt-10 lg:mx-5 ${
-        repoData && repoLanguages ? "" : "animate-pulse"
-      } card-${repoData?.language ?? "Unknown"}`}
+      className={`flex flex-col p-5 w-full max-w-[500px] rounded-lg mt-10 lg:mt-10 lg:mx-5 select-none card-${
+        repoData?.language ?? "Unknown"
+      }`}
     >
-      <div className="flex">
+      <div
+        className={`flex ${repoData && repoLanguages ? "" : "animate-pulse"}`}
+      >
         <div className="flex-1 mr-10 overflow-hidden">
           <Link href={`${GITHUBURL}${props.repoFullName}`} target="_blank">
             <h2 className="text-2xl loading h-8 rounded-lg truncate">
@@ -94,7 +96,9 @@ export default function Project(props: ProjectProps) {
           )}
         </Link>
       </div>
-      <div className="mt-10">
+      <div
+        className={`mt-10 ${repoData && repoLanguages ? "" : "animate-pulse"}`}
+      >
         <Progress {...(repoLanguages ?? {})} />
       </div>
     </div>

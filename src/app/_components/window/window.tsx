@@ -124,7 +124,7 @@ export default function Window({
       style={style}
     >
       <AppBar state={state} setState={setState} />
-      <div className="overflow-auto pb-36">{content}</div>
+      <div className="overflow-auto pb-36 scroll">{content}</div>
     </div>
   );
 }
