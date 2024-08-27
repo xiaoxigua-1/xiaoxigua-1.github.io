@@ -93,7 +93,7 @@ export function useMouseMoveEffect(container: WindowContainer) {
         }
 
         // set cursor style
-        if (state.resizeEvent?.type) {
+        if (state.resizeEvent?.type !== undefined) {
           isResize = true;
           document.body.style.cursor = getCursorStyle(state.resizeEvent.type);
         }
