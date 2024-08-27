@@ -10,7 +10,7 @@ export default function Dock({ windowContainer }: DockProps) {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className="group lg:w-80 lg:h-80 w-60 h-60 absolute top-full left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center select-none pointer-events-none lg:pointer-events-auto">
+    <div className="group lg:w-80 lg:h-80 w-60 h-60 absolute top-full left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center select-none pointer-events-none lg:pointer-events-auto z-[99999]">
       <div
         className={`lg:w-20 lg:h-20 w-20 h-20 lg:group-hover:w-32 lg:group-hover:h-32 rounded-full lg:opacity-50 opacity-90 group-hover:opacity-90 transition-[width,height,opacity] bg-[--${theme}-bg-color] pointer-events-auto`}
       >

@@ -69,7 +69,7 @@ export default function Terminal() {
           </span>
         </div>
       </div>
-      <div className="w-full max-w-[1000px] flex p-10 mx-auto flex-wrap justify-center">
+      <div className="w-full max-w-[1000px] flex lg:p-10 p-0 mx-auto flex-wrap justify-center">
         <div className="w-44 h-44 rounded-full overflow-hidden before:absolute before:-inset-y-2 bg-[#162052] before:inset-x-14 relative after:absolute after:rounded-full after:inset-1 before:bg-gradient-to-t before:from-[#00ccff] before:to-[#d400d4] before:animate-[spin_5s_linear_infinite] select-none">
           <div className="w-full h-full z-10 absolute inset-1">
             <Image
