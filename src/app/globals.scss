@@ -75,7 +75,11 @@ body {
 .card-Unknown {
   @apply bg-slate-800 text-white;
   .loading {
-    @apply bg-slate-700 mt-5;
+    @apply bg-slate-700 mt-5 animate-pulse;
+  }
+  svg,
+  img {
+    @apply opacity-0;
   }
 }
 
